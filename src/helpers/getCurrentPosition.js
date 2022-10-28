@@ -1,5 +1,6 @@
 const options = {
   enableHighAccuracy: true,
+  maximumAge: 1000 * 60 * 60,
 };
 
 export const getCurrentPosition = () => {

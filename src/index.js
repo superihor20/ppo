@@ -1,6 +1,7 @@
 import './assets/styles/index.scss';
 import { icons } from './constants/icons';
 import { createImageElement } from './helpers/dom/createImageElement';
+import { findClosestCity } from './helpers/findClosestCity';
 import { getCurrentPosition } from './helpers/getCurrentPosition';
 import { startCompass } from './helpers/startCompass';
 
@@ -17,6 +18,8 @@ import { startCompass } from './helpers/startCompass';
   const dangerPositionLongitude = document.querySelector(
     '.danger-position-longitude'
   );
+  const capital = document.querySelector('.danger-capital');
+  const country = document.querySelector('.danger-country');
 
   const onDangerButtonClick = (e) => {
     const iconType = e.target.dataset.type;
@@ -34,12 +37,16 @@ import { startCompass } from './helpers/startCompass';
     modal.style.display = 'flex';
     dangerPositionLatitude.innerHTML = info.positionOfDangerItem.latitude;
     dangerPositionLongitude.innerHTML = info.positionOfDangerItem.longitude;
+    capital.innerHTML = info.posibleTarget.capital;
+    country.innerHTML = info.posibleTarget.country;
   };
 
   const closeModal = () => {
     modal.style.display = 'none';
     dangerPositionLatitude.innerHTML = '';
     dangerPositionLongitude.innerHTML = '';
+    capital.innerHTML = '';
+    country.innerHTML = '';
   };
 
   const getInfoAboutDanger = async () => {
@@ -52,11 +59,16 @@ import { startCompass } from './helpers/startCompass';
     acceptButton.setAttribute('disabled', 'disabled');
 
     const currentPosition = await getCurrentPosition();
+    const closestCity = findClosestCity(currentPosition);
 
     openModal({
       positionOfDangerItem: {
         latitude: currentPosition.latitude,
         longitude: currentPosition.longitude,
+      },
+      posibleTarget: {
+        capital: closestCity.properties.capital,
+        country: closestCity.properties.country,
       },
     });
 
