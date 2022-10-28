@@ -5,7 +5,9 @@ export const startCompass = async (handler) => {
   if (isIOS()) {
     try {
       if (!DeviceOrientationEvent?.requestPermission) {
-        throw new Error('Some problem with device orientation permissions');
+        throw new Error(
+          'Some problem with device orientation permissions, probably you use computer, please try to use smartphone'
+        );
       }
 
       const response = await DeviceOrientationEvent.requestPermission();
