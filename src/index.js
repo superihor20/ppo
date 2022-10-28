@@ -38,19 +38,20 @@ const createImage = (src) => {
   dangerButtons.forEach((button) => {
     button.addEventListener('click', onDangerButtonClick);
   });
-
-  let gyroscope = new Gyroscope({ frequency: 60 });
-  const start = document.createElement('span');
-  start.innerHTML = 'somess';
-  directions.appendChild(start);
-  gyroscope.addEventListener('reading', (e) => {
-    const s = document.createElement('span');
-    const res = `Angular velocity along the X-axis ${gyroscope.x}
-    Angular velocity along the Y-axis ${gyroscope.y}
-    Angular velocity along the Z-axis ${gyroscope.z}`;
-    s.innerHTML = res;
-    // directions.innerHTML = '';
-    directions.appendChild(s);
+  DeviceOrientationEvent.requestPermission().then(() => {
+    let gyroscope = new Gyroscope({ frequency: 60 });
+    const start = document.createElement('span');
+    start.innerHTML = 'somess';
+    directions.appendChild(start);
+    gyroscope.addEventListener('reading', (e) => {
+      const s = document.createElement('span');
+      const res = `Angular velocity along the X-axis ${gyroscope.x}
+      Angular velocity along the Y-axis ${gyroscope.y}
+      Angular velocity along the Z-axis ${gyroscope.z}`;
+      s.innerHTML = res;
+      // directions.innerHTML = '';
+      directions.appendChild(s);
+    });
+    gyroscope.start();
   });
-  gyroscope.start();
 })();
