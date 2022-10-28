@@ -32,6 +32,7 @@ const info = {
   const init = () => {
     const initCompass = () => {
       const isCompassStarted = startCompass(compassHandler);
+      console.log(isCompassStarted);
 
       if (isCompassStarted) {
         acceptButton.innerHTML = '';
