@@ -46,7 +46,7 @@ const createImage = (src) => {
       navigator.userAgent.match(/AppleWebKit/);
 
     function init() {
-      acceptButton.addEventListener('click', startCompass);
+      setTimeout(startCompass, 500);
       navigator.geolocation.getCurrentPosition(locationHandler);
 
       if (!isIOS) {
