@@ -46,8 +46,9 @@ const createImage = (src) => {
       navigator.userAgent.match(/AppleWebKit/);
 
     function init() {
-      startCompass();
       navigator.geolocation.getCurrentPosition(locationHandler);
+
+      startCompass();
 
       if (!isIOS) {
         window.addEventListener('deviceorientationabsolute', handler, true);
