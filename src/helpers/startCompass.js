@@ -1,24 +1,27 @@
 import { isIOS } from './isIOS';
 
-export const startCompass = (handler) => {
+// return true if user gave an permissions and false if not
+export const startCompass = async (handler) => {
   if (isIOS()) {
-    if (!DeviceOrientationEvent?.requestPermission) {
-      alert(
-        'Some problem with device orientation permissions, please use your smartphone'
-      );
+    try {
+      if (!DeviceOrientationEvent?.requestPermission) {
+        throw new Error('Some problem with device orientation permissions');
+      }
+
+      const response = await DeviceOrientationEvent.requestPermission();
+
+      if (response === 'granted') {
+        window.addEventListener('deviceorientation', handler, true);
+      } else {
+        throw new Error(
+          "You didn't provide permissions. Sorry but you can't use this app, without giving an access."
+        );
+      }
+    } catch (e) {
+      alert(e instanceof Error ? e.message : 'Someting went wrong');
 
       return false;
     }
-
-    DeviceOrientationEvent.requestPermission()
-      .then((response) => {
-        if (response === 'granted') {
-          window.addEventListener('deviceorientation', handler, true);
-        } else {
-          alert('has to be allowed!');
-        }
-      })
-      .catch(() => alert('not supported'));
   } else {
     window.addEventListener('deviceorientationabsolute', handler, true);
   }
