@@ -40,13 +40,17 @@ const createImage = (src) => {
   });
 
   let gyroscope = new Gyroscope({ frequency: 60 });
-  directions.appendChild('some');
+  const start = document.createElement('span');
+  start.innerHTML = 'somess';
+  directions.appendChild(start);
   gyroscope.addEventListener('reading', (e) => {
+    const s = document.createElement('span');
     const res = `Angular velocity along the X-axis ${gyroscope.x}
     Angular velocity along the Y-axis ${gyroscope.y}
     Angular velocity along the Z-axis ${gyroscope.z}`;
+    s.innerHTML = res;
     // directions.innerHTML = '';
-    directions.appendChild(res);
+    directions.appendChild(s);
   });
   gyroscope.start();
 })();
