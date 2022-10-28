@@ -4,7 +4,7 @@ export const startCompass = (handler) => {
   if (isIOS()) {
     if (!DeviceOrientationEvent?.requestPermission) {
       alert(
-        'Probably you trying to run application from computer, please use your smartphone'
+        'Some problem with device orientation permissions, please use your smartphone'
       );
 
       return false;

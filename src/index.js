@@ -34,13 +34,16 @@ const info = {
       const isCompassStarted = startCompass(compassHandler);
 
       if (isCompassStarted) {
-        acceptButton.removeEventListener('click', initCompass);
         acceptButton.innerHTML = '';
 
         dangerButtons.forEach((button) => {
           button.removeAttribute('disabled');
         });
+      } else {
+        acceptButton.innerHTML = '😢';
       }
+
+      acceptButton.removeEventListener('click', initCompass);
     };
 
     acceptButton.addEventListener('click', initCompass);
