@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: './src/index.js',
   output: {
     filename: 'main.js',
@@ -18,15 +18,7 @@ module.exports = {
             loader: 'css-loader',
             options: { modules: false },
           },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-              sassOptions: {
-                outputStyle: 'compressed',
-              },
-            },
-          },
+          'sass-loader',
         ],
       },
       {
@@ -42,4 +34,7 @@ module.exports = {
       inject: 'body',
     }),
   ],
+  devServer: {
+    static: './dist',
+  },
 };
