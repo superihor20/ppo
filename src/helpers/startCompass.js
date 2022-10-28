@@ -2,7 +2,7 @@ import { isIOS } from './isIOS';
 
 export const startCompass = (handler) => {
   if (isIOS()) {
-    if (!('DeviceOrientationEvent' in window)) {
+    if (!DeviceOrientationEvent?.requestPermission) {
       alert(
         'Probably you trying to run application from computer, please use your smartphone'
       );
