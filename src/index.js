@@ -49,7 +49,9 @@ const createImage = (src) => {
   let compass;
 
   (() => {
+    alert('started');
     if (isIOS) {
+      alert('ios');
       DeviceOrientationEvent.requestPermission()
         .then((response) => {
           if (response === 'granted') {
@@ -60,12 +62,15 @@ const createImage = (src) => {
         })
         .catch(() => alert('not supported'));
     } else {
+      alert('not ios');
       window.addEventListener('deviceorientationabsolute', handler, true);
     }
   })();
 
   function handler(e) {
+    alert('ya nadler');
     compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
+    alert(compass, 'compass');
     directions.style.transform = `translate(-50%, -50%) rotate(${-compass}deg)`;
   }
 })();
