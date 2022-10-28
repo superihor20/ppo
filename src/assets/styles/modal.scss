@@ -1,0 +1,40 @@
+@import './variables.scss';
+
+.danger-popup-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.danger-popup-container {
+  max-width: 80vw;
+  width: 100%;
+  padding: 20px;
+  background: $modal-bg;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    margin: 10px 0 15px;
+    list-style-position: inside;
+  }
+}
+
+.close-modal-button {
+  margin: 10px auto;
+  display: block;
+  padding: 10px 50px;
+  border-radius: 10px;
+  background: $modal-close-button-bg;
+  color: #fff;
+}
