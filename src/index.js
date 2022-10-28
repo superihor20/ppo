@@ -46,7 +46,7 @@ const createImage = (src) => {
       navigator.userAgent.match(/AppleWebKit/);
 
     function init() {
-      setTimeout(startCompass, 500);
+      setTimeout(startCompass, 4000);
       navigator.geolocation.getCurrentPosition(locationHandler);
 
       if (!isIOS) {
