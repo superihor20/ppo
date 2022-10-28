@@ -7,7 +7,7 @@ export const startCompass = (handler) => {
         'Probably you trying to run application from computer, please use your smartphone'
       );
 
-      return;
+      return false;
     }
 
     DeviceOrientationEvent.requestPermission()
@@ -22,4 +22,6 @@ export const startCompass = (handler) => {
   } else {
     window.addEventListener('deviceorientationabsolute', handler, true);
   }
+
+  return true;
 };

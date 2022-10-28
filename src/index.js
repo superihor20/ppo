@@ -31,13 +31,16 @@ const info = {
 
   const init = () => {
     const initCompass = () => {
-      startCompass(compassHandler);
-      acceptButton.removeEventListener('click', initCompass);
-      acceptButton.innerHTML = '';
+      const isCompassStarted = startCompass(compassHandler);
 
-      dangerButtons.forEach((button) => {
-        button.removeAttribute('disabled');
-      });
+      if (isCompassStarted) {
+        acceptButton.removeEventListener('click', initCompass);
+        acceptButton.innerHTML = '';
+
+        dangerButtons.forEach((button) => {
+          button.removeAttribute('disabled');
+        });
+      }
     };
 
     acceptButton.addEventListener('click', initCompass);
