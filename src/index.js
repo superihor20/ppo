@@ -30,9 +30,8 @@ const info = {
   };
 
   const init = () => {
-    const initCompass = () => {
-      const isCompassStarted = startCompass(compassHandler);
-      console.log(isCompassStarted);
+    const initCompass = async () => {
+      const isCompassStarted = await startCompass(compassHandler);
 
       if (isCompassStarted) {
         acceptButton.innerHTML = '';
