@@ -38,7 +38,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'PPO',
-      template: path.join('src', 'assets', 'html', 'index.html'),
+      template: path.join('src', 'html', 'index.html'),
       inject: 'body',
     }),
   ],

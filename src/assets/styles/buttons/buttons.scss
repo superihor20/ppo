@@ -7,12 +7,13 @@
 }
 
 .danger-button {
-  background: $danger-button-color;
+  background: $danger-button-bg-color;
   padding: 10px;
   border-radius: 15px;
   flex: 1 0 calc(50% - 10px);
   text-align: center;
   color: #fff;
+  position: relative;
 
   &:hover {
     box-shadow: 0px 2px 2px rgb(0 0 0 / 50%);
@@ -20,5 +21,59 @@
 
   &:active {
     box-shadow: inset 1px 1px 10px #000;
+  }
+
+  &.icon {
+    &:before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 20px;
+      background-size: 20px 20px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 20px;
+    }
+
+    &-plane {
+      &:before {
+        background-image: url('../icons/plane.svg');
+      }
+    }
+
+    &-helicopter {
+      &:before {
+        background-image: url('../icons/helicopter.svg');
+      }
+    }
+
+    &-drone {
+      &:before {
+        background-image: url('../icons/drone.svg');
+      }
+    }
+
+    &-missile {
+      &:before {
+        background-image: url('../icons/missile.svg');
+      }
+    }
+  }
+}
+
+.accept-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 250px;
+  margin: 40px auto;
+  border-radius: 50%;
+  background: $accept-button-bg-color;
+  border: 20px solid $accept-button-border-color;
+
+  img {
+    max-width: 100px;
   }
 }

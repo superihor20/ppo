@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <main>
+      <button class="accept-button"></button>
+      <div class="buttons-wrapper">
+        <button data-type="missile" class="danger-button icon icon-missile">
+          Missile
+        </button>
+        <button data-type="drone" class="danger-button icon icon-drone">
+          Drone
+        </button>
+        <button data-type="plane" class="danger-button icon icon-plane">
+          Plane
+        </button>
+        <button
+          data-type="helicopter"
+          class="danger-button icon icon-helicopter"
+        >
+          Helicopter
+        </button>
+      </div>
+    </main>
+  </body>
+</html>
