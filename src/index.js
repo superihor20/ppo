@@ -45,7 +45,7 @@ const createImage = (src) => {
     const res = `Angular velocity along the X-axis ${gyroscope.x}
     Angular velocity along the Y-axis ${gyroscope.y}
     Angular velocity along the Z-axis ${gyroscope.z}`;
-    directions.innerHTML = '';
+    // directions.innerHTML = '';
     directions.appendChild(res);
   });
   gyroscope.start();
