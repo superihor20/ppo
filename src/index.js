@@ -40,7 +40,7 @@ const createImage = (src) => {
   });
 
   let gyroscope = new Gyroscope({ frequency: 60 });
-
+  directions.appendChild('some');
   gyroscope.addEventListener('reading', (e) => {
     const res = `Angular velocity along the X-axis ${gyroscope.x}
     Angular velocity along the Y-axis ${gyroscope.y}
