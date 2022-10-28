@@ -44,9 +44,11 @@ const createImage = (src) => {
     navigator.userAgent.match(/AppleWebKit/)
   );
 
+  console.log(isIOS);
+
   let compass;
 
-  () => {
+  (() => {
     if (isIOS) {
       DeviceOrientationEvent.requestPermission()
         .then((response) => {
@@ -60,7 +62,7 @@ const createImage = (src) => {
     } else {
       window.addEventListener('deviceorientationabsolute', handler, true);
     }
-  };
+  })();
 
   function handler(e) {
     compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
