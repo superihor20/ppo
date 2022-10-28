@@ -1,5 +1,6 @@
 import './assets/styles/index.scss';
-import { isIOS } from './helpers/isIOS';
+import { icons } from './constants/icons';
+import { createImageElement } from './helpers/dom/createImageElement';
 import { startCompass } from './helpers/startCompass';
 
 const info = {
@@ -9,8 +10,6 @@ const info = {
 };
 
 (() => {
-  let pointDegree;
-
   const directions = document.querySelector('.compass');
   const acceptButton = document.querySelector('.accept-button');
   const dangerButtons = document.querySelectorAll('.danger-button');
@@ -18,21 +17,12 @@ const info = {
   const onDangerButtonClick = (e) => {
     const iconType = e.target.dataset.type;
     acceptButton.innerHTML = '';
-    acceptButton.appendChild(createImage(icons[iconType]));
+    acceptButton.appendChild(createImageElement(icons[iconType]));
   };
 
   dangerButtons.forEach((button) => {
     button.addEventListener('click', onDangerButtonClick);
   });
-
-  // const locationHandler = (position) => {
-  //   const { latitude, longitude } = position.coords;
-  //   pointDegree = calcDegreeToPoint(latitude, longitude);
-
-  //   if (pointDegree < 0) {
-  //     pointDegree = pointDegree + 360;
-  //   }
-  // };
 
   const compassHandler = (e) => {
     const compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
@@ -40,36 +30,18 @@ const info = {
   };
 
   const init = () => {
-    const initStart = () => {
+    const initCompass = () => {
       startCompass(compassHandler);
-      acceptButton.removeEventListener('click', initStart);
+      acceptButton.removeEventListener('click', initCompass);
       acceptButton.innerHTML = '';
+
+      dangerButtons.forEach((button) => {
+        button.removeAttribute('disabled');
+      });
     };
 
-    acceptButton.addEventListener('click', initStart);
-    // navigator.geolocation.getCurrentPosition(locationHandler);
+    acceptButton.addEventListener('click', initCompass);
   };
-
-  // const calcDegreeToPoint = (latitude, longitude) => {
-  //   // Qibla geolocation
-  //   const point = {
-  //     lat: 21.422487,
-  //     lng: 39.826206,
-  //   };
-
-  //   const phiK = (point.lat * Math.PI) / 180.0;
-  //   const lambdaK = (point.lng * Math.PI) / 180.0;
-  //   const phi = (latitude * Math.PI) / 180.0;
-  //   const lambda = (longitude * Math.PI) / 180.0;
-  //   const psi =
-  //     (180.0 / Math.PI) *
-  //     Math.atan2(
-  //       Math.sin(lambdaK - lambda),
-  //       Math.cos(phi) * Math.tan(phiK) -
-  //         Math.sin(phi) * Math.cos(lambdaK - lambda)
-  //     );
-  //   return Math.round(psi);
-  // };
 
   init();
 })();

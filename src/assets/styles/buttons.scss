@@ -7,7 +7,7 @@
 }
 
 .danger-button {
-  background: $danger-button-bg-color;
+  background: $danger-button-bg;
   padding: 10px;
   border-radius: 15px;
   flex: 1 0 calc(50% - 10px);
@@ -21,6 +21,11 @@
 
   &:active {
     box-shadow: inset 1px 1px 10px #000;
+  }
+
+  &:disabled {
+    background-color: $danger-disabled-button-bg;
+    pointer-events: none;
   }
 
   &.icon {
@@ -70,7 +75,7 @@
   height: 250px;
   margin: 30px auto;
   border-radius: 50%;
-  background: $accept-button-bg-color;
+  background: $accept-button-bg;
   border: 20px solid $accept-button-border-color;
   color: #fff;
   font-weight: bold;
